@@ -1,0 +1,59 @@
+
+{
+  "folders": [
+    {
+      "path": "HelpReviews.client",
+      "name": "client"
+    },
+    {
+      "path": "HelpReviews",
+      "name": "server"
+    },{"path":".github/workflows", "name":"workflows"}
+  ],
+  "settings": {
+    "editor.suggestSelection": "first",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "javascript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.referencesCodeLens.showOnAllFunctions": true,
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "files.exclude": {
+      "**/.nyc_*": true,
+      "**/coverage": true,
+      "**/node_modules": true
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDragAndDrop": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "eslint.codeActionsOnSave.mode": "all",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#82f6b1",
+      "activityBar.background": "#82f6b1",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#b588f6",
+      "activityBarBadge.foreground": "#15202b",
+      "commandCenter.border": "#15202b99",
+      "sash.hoverBorder": "#82f6b1",
+      "statusBar.background": "#53f293",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#24ee75",
+      "statusBarItem.remoteBackground": "#53f293",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#53f293",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#53f29399",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#53F293"
+  }
+}
