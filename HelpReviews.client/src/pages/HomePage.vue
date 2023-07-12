@@ -1,41 +1,66 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="home">
+
+    <!-- LIST ALL RESTAURANTS HERE -->
+
+    <div class="container">
+      <div class="row my-3">
+        <div class="col-md-4" v-for="r in restaurants" :key="r.id">
+          <RestaurantCard :restaurant="r" />
+        </div>
+      </div>
     </div>
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto">
+          <RestaurantForm  class="bg-white elevation-2 p-3 rounded" />
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
 </template>
 
 <script>
+import { computed, onMounted } from 'vue';
+import Pop from '../utils/Pop.js';
+import { restaurantsService } from '../services/RestaurantsService.js'
+import { AppState } from '../AppState.js';
+
+
 export default {
   setup() {
-    return {}
+
+    async function getAllRestaurants() {
+      try {
+        restaurantsService.getAll()
+      } catch (error) {
+        Pop.error(error, '[GETTING RESTAURANTS]')
+      }
+    }
+
+
+    onMounted(() => {
+      getAllRestaurants()
+    })
+
+
+
+    return {
+
+      restaurants: computed(() => AppState.restaurants)
+
+
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
-}
+.home {}
 </style>
