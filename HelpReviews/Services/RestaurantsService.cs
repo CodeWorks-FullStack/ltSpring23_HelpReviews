@@ -19,7 +19,14 @@ public class RestaurantsService
 
   internal Restaurant GetOne(int id)
   {
-    return _repo.GetOne(id);
+    var restaurant = _repo.GetOne(id);
+
+    restaurant.Exposure++;
+
+    _repo.Update(restaurant);
+
+
+    return restaurant;
   }
 
   internal List<Report> GetReportsByRestaurantId(int id)

@@ -8,5 +8,9 @@ public class Restaurant
   public string ImgUrl { get; set; }
   public string Category { get; set; }
   public string CreatorId { get; set; }
+  public int Exposure { get; set; }
+
+  // computed value only
+  public int ReportCount { get; set; }
 
 }

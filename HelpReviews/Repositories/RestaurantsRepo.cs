@@ -12,9 +12,35 @@ public class RestaurantsRepo
 
   internal List<Restaurant> GetAll()
   {
+    // REVIEW MYSQL COUNTS
     string sql = @"
-      SELECT * FROM restaurants
+      SELECT 
+        rest.*,
+        COUNT(rep.id) AS ReportCount
+
+      FROM restaurants rest
+      
+      LEFT JOIN reports rep ON rep.restaurantId = rest.id
+
+      GROUP BY (rest.id)
+
     ;";
+
+
+
+
+    /**!VIRUAL COUNT
+    const BirdsSchema({...})
+
+    BirdsSchema.virtual('spottedCount', {
+      localField: '_id',
+      foreignField: 'birdId',
+      count: true,
+      ref: 'Spotters'
+    })
+    **/
+
+
 
     return _db.Query<Restaurant>(sql).ToList();
 
@@ -51,6 +77,21 @@ public class RestaurantsRepo
       rep.Creator = a;
       return rep;
     }, new { id }).ToList();
+
+
+  }
+
+  internal void Update(Restaurant restaurant)
+  {
+
+    string sql = @"
+      UPDATE restaurants
+      SET
+        exposure = @Exposure
+      WHERE id = @Id
+    ;";
+
+    _db.Execute(sql, restaurant);
 
 
   }

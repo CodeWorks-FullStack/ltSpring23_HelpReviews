@@ -15,10 +15,16 @@ public class ReportsRepo
       INSERT INTO reports(Title, Body, CreatorId, RestaurantId)
       VALUES(@Title, @Body, @CreatorId, @RestaurantId);
 
-      SELECT * FROM reports WHERE id = LAST_INSERT_ID()
+      SELECT * FROM reports rep
+        JOIN restaurants rest ON rep.restaurantId = rest.id
+      WHERE rep.id = LAST_INSERT_ID()
     ;";
 
-    return _db.Query<Report>(sql, reportData).FirstOrDefault();
+    return _db.Query<Report, Restaurant, Report>(sql, (rep, rest) =>
+    {
+      rep.Restaurant = rest;
+      return rep;
+    }, reportData).FirstOrDefault();
   }
 
   internal List<Report> GetReportsByCreatorId(string creatorId)

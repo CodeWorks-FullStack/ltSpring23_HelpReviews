@@ -8,6 +8,15 @@
           <h1>{{ restaurant.name }}</h1>
           <div>
             {{ restaurant.category }}
+            <span title="exposure">
+              <i class="mdi mdi-eye"></i>
+              {{ restaurant.exposure }}
+            </span>
+
+            <span title="report">
+              📜
+              {{ reports.length }}
+            </span>
           </div>
           <article>{{ restaurant.description }}</article>
         </aside>

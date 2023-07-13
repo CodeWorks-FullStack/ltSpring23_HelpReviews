@@ -4,11 +4,11 @@
       <p>
         <b>
           <router-link class="text-light" :to="{ name: 'Restaurant', params: { id: restaurant.id } }">
-            {{ restaurant.name }}
+            {{ restaurant.name }} - 📜 {{ restaurant.reportCount }}
           </router-link>
         </b>
       </p>
-
+      <p><button @click="doTheEmit">emit example</button></p>
     </div>
 
 
@@ -23,9 +23,19 @@ export default {
   props: {
     restaurant: { type: Restaurant, required: true }
   },
-  setup() {
+  setup(props, { emit }) {
 
-    return {}
+
+
+    return {
+
+      doTheEmit() {
+        console.log('lets emit', props.restaurant)
+        emit('beFree')
+      }
+
+
+    }
   }
 }
 </script>

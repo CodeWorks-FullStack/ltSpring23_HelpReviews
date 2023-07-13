@@ -27,6 +27,10 @@ class RestaurantsService {
   async createReport(reportData) {
     const res = await api.post('/api/reports', reportData)
     AppState.myReports.push(res.data)
+
+    // just to fix reactivity
+    AppState.restaurants.find(r => r.id == reportData.restaurantId).reportCount++
+
   }
 
   async getReportsByRestaurantId(id) {

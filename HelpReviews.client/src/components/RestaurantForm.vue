@@ -30,14 +30,23 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import Pop from '../utils/Pop.js';
 import { restaurantsService } from '../services/RestaurantsService.js';
 
 export default {
-  setup() {
+  // props: {
+  //   example: { type: Object, default: () => { return {} } }
+  // },
+  setup(props) {
 
     const editable = ref({})
+
+
+    // watchEffect(() => {
+    //   editable.value = { ...props.example }
+    // })
+
 
 
     return {

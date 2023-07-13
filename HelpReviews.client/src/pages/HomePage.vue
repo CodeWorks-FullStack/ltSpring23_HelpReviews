@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row my-3">
         <div class="col-md-4" v-for="r in restaurants" :key="r.id">
-          <RestaurantCard :restaurant="r" />
+          <RestaurantCard :restaurant="r" @beFree="IwillBeFree" />
         </div>
       </div>
     </div>
@@ -29,6 +29,7 @@
 <script>
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
+// import { Modal } from 'bootstrap';
 
 
 export default {
@@ -36,7 +37,11 @@ export default {
 
     return {
 
-      restaurants: computed(() => AppState.restaurants)
+      restaurants: computed(() => AppState.restaurants),
+      IwillBeFree() {
+        // Modal.getOrCreateInstance('#the-modal').hide()
+
+      }
 
 
     }
