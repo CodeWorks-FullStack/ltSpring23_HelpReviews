@@ -8,10 +8,21 @@ class AccountService {
     try {
       const res = await api.get('/account')
       AppState.account = new Account(res.data)
+
+      // this.getMyReports()
+
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+
+  async getMyReports() {
+    const res = await api.get('account/reports')
+    AppState.myReports = res.data
+  }
+
+
 }
 
 export const accountService = new AccountService()

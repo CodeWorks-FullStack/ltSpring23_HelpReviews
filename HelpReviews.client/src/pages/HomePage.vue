@@ -16,7 +16,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 m-auto">
-          <RestaurantForm  class="bg-white elevation-2 p-3 rounded" />
+          <RestaurantForm class="bg-white elevation-2 p-3 rounded" />
         </div>
       </div>
     </div>
@@ -27,29 +27,12 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
-import Pop from '../utils/Pop.js';
-import { restaurantsService } from '../services/RestaurantsService.js'
+import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 
 
 export default {
   setup() {
-
-    async function getAllRestaurants() {
-      try {
-        restaurantsService.getAll()
-      } catch (error) {
-        Pop.error(error, '[GETTING RESTAURANTS]')
-      }
-    }
-
-
-    onMounted(() => {
-      getAllRestaurants()
-    })
-
-
 
     return {
 

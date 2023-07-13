@@ -1,11 +1,11 @@
 namespace HelpReviews.Repositories;
 
-public class RestaurantRepo
+public class RestaurantsRepo
 {
 
   private readonly IDbConnection _db;
 
-  public RestaurantRepo(IDbConnection db)
+  public RestaurantsRepo(IDbConnection db)
   {
     _db = db;
   }
@@ -35,5 +35,23 @@ public class RestaurantRepo
   internal Restaurant GetOne(int id)
   {
     return _db.Query<Restaurant>("SELECT * FROM restaurants WHERE id = @id", new { id }).FirstOrDefault();
+  }
+
+  internal List<Report> GetReportsByRestaurantId(int id)
+  {
+    var sql = @"
+      SELECT * FROM reports rep
+      JOIN accounts a ON rep.creatorId = a.id
+      WHERE rep.restaurantId = @id
+    ;";
+
+
+    return _db.Query<Report, Profile, Report>(sql, (rep, a) =>
+    {
+      rep.Creator = a;
+      return rep;
+    }, new { id }).ToList();
+
+
   }
 }

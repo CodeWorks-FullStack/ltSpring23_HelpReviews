@@ -43,6 +43,21 @@ public class RestaurantsController : ControllerBase
     }
   }
 
+  [HttpGet("{id}/reports")]
+  public ActionResult<List<Report>> GetReportsByRestaurantId(int id)
+  {
+    try
+    {
+      List<Report> reports = _rs.GetReportsByRestaurantId(id);
+
+      return Ok(reports);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
 
   [Authorize]
   [HttpPost]

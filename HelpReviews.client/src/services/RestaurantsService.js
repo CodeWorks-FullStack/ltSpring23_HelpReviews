@@ -13,6 +13,7 @@ class RestaurantsService {
   }
 
   async getRestaurant(id) {
+    AppState.restaurant = null
     const res = await api.get(URI + id)
     AppState.restaurant = new Restaurant(res.data)
   }
@@ -20,6 +21,18 @@ class RestaurantsService {
   async create(restaurantData) {
     const res = await api.post(URI, restaurantData)
     AppState.restaurants.push(new Restaurant(res.data))
+  }
+
+
+  async createReport(reportData) {
+    const res = await api.post('/api/reports', reportData)
+    AppState.myReports.push(res.data)
+  }
+
+  async getReportsByRestaurantId(id) {
+    AppState.restaurantReports = []
+    const res = await api.get(URI + id + '/reports')
+    AppState.restaurantReports = res.data
   }
 
 }

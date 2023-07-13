@@ -10,5 +10,3 @@ public class Restaurant
   public string CreatorId { get; set; }
 
 }
-
-

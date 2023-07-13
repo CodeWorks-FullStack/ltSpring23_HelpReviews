@@ -8,5 +8,10 @@ export const AppState = reactive({
   /** @type {import('./models/Restaurant.js').Restaurant[]} */
   restaurants: [],
   /** @type {import('./models/Restaurant.js').Restaurant | null} */
-  restaurant: null
+  restaurant: null,
+
+  myReports: [],
+  restaurantReports: []
 })
+
+// TALK ABOUT THESE THINGS LATER... NEVER CRUD REST SOAP GRAPHQL

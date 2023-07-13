@@ -1,10 +1,25 @@
 <template>
   <div class="restaurant-page" v-if="restaurant">
-    <h1>{{ restaurant.name }}</h1>
-    <div>
-      {{ restaurant.category }}
+    <div class="container">
+      <div class="row my-3">
+
+        <aside class="col-md-3">
+          <img class="img-fluid my-2" :src="restaurant.imgUrl" alt="">
+          <h1>{{ restaurant.name }}</h1>
+          <div>
+            {{ restaurant.category }}
+          </div>
+          <article>{{ restaurant.description }}</article>
+        </aside>
+
+        <aside class="col-md-8 col-md-offset-1">
+          <RestaurantReportCard v-for="r in reports" :key="r.id" :report="r" />
+        </aside>
+
+      </div>
     </div>
-    <article>{{ restaurant.description }}</article>
+
+
   </div>
   <div v-else>loading....</div>
 </template>
@@ -27,6 +42,7 @@ export default {
     async function getRestaurant() {
       try {
         restaurantsService.getRestaurant(route.params.id)
+        restaurantsService.getReportsByRestaurantId(route.params.id)
       } catch (error) {
         logger.log(error)
         Pop.error('naw dawg that doesnt exist')
@@ -41,7 +57,8 @@ export default {
 
 
     return {
-      restaurant: computed(() => AppState.restaurant)
+      restaurant: computed(() => AppState.restaurant),
+      reports: computed(() => AppState.restaurantReports)
     }
   }
 }

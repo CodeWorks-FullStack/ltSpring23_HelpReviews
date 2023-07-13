@@ -3,7 +3,7 @@ namespace HelpReviews.Services;
 public class RestaurantsService
 {
 
-  private readonly RestaurantRepo _repo;
+  private readonly RestaurantsRepo _repo;
 
 
   public List<Restaurant> GetAll()
@@ -22,7 +22,12 @@ public class RestaurantsService
     return _repo.GetOne(id);
   }
 
-  public RestaurantsService(RestaurantRepo repo)
+  internal List<Report> GetReportsByRestaurantId(int id)
+  {
+    return _repo.GetReportsByRestaurantId(id);
+  }
+
+  public RestaurantsService(RestaurantsRepo repo)
   {
     _repo = repo;
   }
